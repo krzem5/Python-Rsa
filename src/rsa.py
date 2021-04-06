@@ -1,7 +1,3 @@
-import sys
-
-
-
 DEFAULT_BLOCK_SIZE=128
 
 
@@ -36,7 +32,7 @@ def encrypt(seq,key):
 				blk+=seq[j]*(256**(j%bs))
 			enc+=f"g{hex(pow(blk,e,n))[2:]}"
 		return f"{enc[1:]}g{hex(len(seq))[2:]}g{hex(bs)[2:]}"
-	except:
+	except BaseException:
 		return None
 
 
@@ -59,7 +55,7 @@ def decrypt(seq,key):
 					blk=blk%(256**i)
 			dec+=db
 		return "".join(dec)
-	except:
+	except BaseException:
 		return None
 
 
