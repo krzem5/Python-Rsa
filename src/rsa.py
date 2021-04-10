@@ -12,10 +12,10 @@ def main():
 
 
 def key(fn):
-	f=open(fn)
-	sz,n,ed=f.read().split("g")
-	f.close()
-	return [int(sz,16),int(n,16),int(ed,16)]
+	with open(fn,"r") as f:
+		sz,n,ed=f.read().split("g")
+		f.close()
+		return [int(sz,16),int(n,16),int(ed,16)]
 
 
 def encrypt(seq,key):
@@ -32,7 +32,7 @@ def encrypt(seq,key):
 				blk+=seq[j]*(256**(j%bs))
 			enc+=f"g{hex(pow(blk,e,n))[2:]}"
 		return f"{enc[1:]}g{hex(len(seq))[2:]}g{hex(bs)[2:]}"
-	except BaseException:
+	except Exception:
 		return None
 
 
@@ -55,7 +55,7 @@ def decrypt(seq,key):
 					blk=blk%(256**i)
 			dec+=db
 		return "".join(dec)
-	except BaseException:
+	except Exception:
 		return None
 
 
