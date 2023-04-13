@@ -18,6 +18,7 @@ def key(fn):
 		return [int(sz,16),int(n,16),int(ed,16)]
 
 
+
 def encrypt(seq,key):
 	try:
 		sz,n,e=key
@@ -34,6 +35,7 @@ def encrypt(seq,key):
 		return f"{enc[1:]}g{hex(len(seq))[2:]}g{hex(bs)[2:]}"
 	except Exception:
 		return None
+
 
 
 def decrypt(seq,key):
@@ -57,6 +59,7 @@ def decrypt(seq,key):
 		return "".join(dec)
 	except Exception:
 		return None
+
 
 
 main()
